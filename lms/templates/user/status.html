@@ -1,0 +1,37 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block title %}Your Status{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row" style="margin-top:100px">
+        <div class="col-sm-2"></div>
+
+        <div class="col-sm-8" style="margin-bottom:50px">
+            <div class="table-responsive">
+                <p style="font-size:25px">Borrowing Books : {{ count }} (books)</p>
+        <table class="container" style="color:#e1e1e3">
+	<thead>
+		<tr>
+			<th>Book</th>
+			<th>Start</th>
+		    <th>End</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for borrow in borrows %}
+                <tr>
+                    <td>{{ borrow.book }}</td>
+                    <td>{{ borrow.start_date }}</td>
+                    <td>{{ borrow.end_date }}</td>
+                </tr>
+                {% endfor %}
+	</tbody>
+        </table>
+
+
+
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

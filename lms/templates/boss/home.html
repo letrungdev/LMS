@@ -1,0 +1,305 @@
+{% extends 'boss/base.html' %}
+{% block title %}Admin Home View{% endblock %}
+{% load static %}
+{% block content %}
+<style>
+.container td, th {
+	  padding-bottom: 2%;
+	  padding-top: 2%;
+  padding-left:2%;
+}
+/* Background-color of the odd rows */
+.container tr:nth-child(odd) {
+	  background-color: #323C50;
+}
+
+/* Background-color of the even rows */
+.container tr:nth-child(even) {
+	  background-color: #2C3446;
+}
+
+.container th {
+	  background-color: #1F2739;
+}
+
+.container td:first-child { color: #FB667A; }
+
+.container tr:hover {
+   background-color: #464A52;
+-webkit-box-shadow: 0 6px 6px -6px #0E1119;
+	   -moz-box-shadow: 0 6px 6px -6px #0E1119;
+	        box-shadow: 0 6px 6px -6px #0E1119;
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+
+<div class="container-fluid">
+    <ol class="breadcrumb text-light" style="font-size:23px;margin:20px 0">
+        <li class="breadcrumb-item">My LMS</li>
+        <li class="breadcrumb-item">Overview</li>
+    </ol>
+<!-- Icon Cards-->
+    <div class="row">
+
+        <div class="col-sm-8">
+            <div class="row">
+        <div class="col-sm-4">
+            <div class="card h-400 shadow-lg" style="color:white;background-color:#2a2d3e">
+                <div class="card-header" style="background-color:#fdc667;color:white;font-size:23px;font-weight:bold"><i class="fas fa-book-open"></i> Total Books<i class="fas fa-ellipsis-v" style="float:right"></i></div>
+                <div class="card-body">
+                    <div class="mr-5"> <center style="font-size:28px;font-weight:bold"> {{ book }}</center> </div>
+
+                </div>
+                <div class="card-footer clearfix small z-1">
+                    <a href="{% url 'bblist' %}" style="font-size:15px;color:#b1c5d7;text-decoration:none"><i class="fas fa-angle-double-right"></i> <span class="float-left"> See Book List</span><br></a>
+                        </div>
+                    </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="card h-400 shadow-lg" style="color:white;background-color:#2a2d3e">
+                <div class="card-header" style="background-color:#02afae;color:white;font-size:23px;font-weight:bold"><i class="fas fa-users"></i> Total Users<i class="fas fa-ellipsis-v" style="float:right"></i></div>
+                <div class="card-body">
+                    <div class="mr-5"> <center style="font-size:28px;font-weight:bold"> {{ user }}</center> </div>
+                </div>
+                <div class="card-footer clearfix small z-1">
+                    <a href="{% url 'bulist' %}" style="font-size:15px;color:#b1c5d7;text-decoration:none"><i class="fas fa-angle-double-right"></i> <span class="float-left"> See User List</span><br></a>
+                        </div>
+                    </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="card h-400 shadow-lg" style="color:white;background-color:#2a2d3e">
+                <div class="card-header" style="background-color:#ca79b9;color:white;font-size:23px;font-weight:bold"><i class="fas fa-comments"></i> Total Requests<i class="fas fa-ellipsis-v" style="float:right"></i></div>
+                <div class="card-body">
+                    <div class="mr-5"> <center style="font-size:28px;font-weight:bold"> {{ requestb }}</center> </div>
+                </div>
+                <div class="card-footer clearfix small z-1">
+                    <a href="{% url 'brlist' %}" style="font-size:15px;color:#b1c5d7;text-decoration:none" ><i class="fas fa-angle-double-right"></i> <span class="float-left"> See Request List</span><br></a>
+                        </div>
+                    </div>
+
+
+    </div>
+</div>
+    <div class="row" style="margin-top:30px;color:#e1e1e3">
+        <div class="col-sm-7">
+        <div class="card h-400 shadow-lg" style="color:#b1c5d7;background-color:#2a2d3e">
+                <div class="card-header">
+                    <span style="font-size:23px">Recent Added Books </span>
+                    <button class="btn me-2 text-light" type="submit" style="background-color:#2a2d3e;float:right;border: 1px solid #4CAF50;font-size:12px">
+                        <a href="{% url 'bblist' %}" style="color:white;text-decoration: none">See More</a>
+                    </button>
+                </div>
+                <div class="card-body">
+        <table class="container">
+	<thead>
+		<tr style="font-size:20px">
+			<th>Cover</th>
+			<th>Title</th>
+			<th>Author</th>
+			<th>Year</th>
+		</tr>
+	</thead>
+	<tbody>
+    {% for newbook in newbooks %}
+		<tr style="font-size:15px">
+			<td><img src="{{ newbook.cover.url }}" style="height: 70px; width: 45px"></td>
+			<td>{{ newbook.title|slice:":10" }}...</td>
+			<td>{{ newbook.author }}</td>
+			<td>{{ newbook.year }}</td>
+		</tr>
+    {% endfor %}
+	</tbody>
+        </table>
+                </div>
+
+        </div>
+        </div>
+
+        <div class="col-sm-5">
+            <div class="card h-400 shadow-lg" style="color:#b1c5d7;background-color:#2a2d3e">
+                <div class="card-header">
+                   <span style="font-size:23px">New Members </span>
+                    <button class="btn me-2 text-light" type="submit" style="background-color:#2a2d3e;float:right;border: 1px solid #4CAF50;font-size:12px">
+                        <a href="{% url 'bulist' %}" style="color:white;text-decoration: none">See More</a>
+                    </button>
+                </div>
+                <div class="card-body">
+        <table class="container">
+	<thead>
+		<tr style="font-size:20px">
+			<th>Username</th>
+			<th>Name</th>
+		</tr>
+	</thead>
+	<tbody>
+    {% for newuser in newusers %}
+		<tr>
+			<td>{{ newuser.username }}</td>
+			<td>{{ newuser.last_name }} {{ newuser.first_name }}</td>
+		</tr>
+    {% endfor %}
+	</tbody>
+</table>
+                </div>
+
+                    </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:30px">
+         <div class="card h-400 shadow-lg" style="color:#b1c5d7;background-color:#2a2d3e">
+             <div class="card-header">
+                 Book Quantity Static
+             </div>
+             <div class="card-body">
+                   <div>
+            <canvas id="xxChart"></canvas>
+        </div>
+             </div>
+         </div>
+
+    </div>
+
+</div>
+
+        <div class="col-sm-4">
+            <div class="card h-400 shadow-lg" style="color:#b1c5d7;background-color:#2a2d3e">
+                <div class="card-header">
+                    Book Analytics
+                </div>
+                <div class="card-body">
+                <div>
+		            <canvas id="myChart"></canvas>
+	            </div>
+                </div>
+            </div>
+
+            <div class="card h-400 shadow-lg" style="color:#b1c5d7;background-color:#2a2d3e;margin-top:50px">
+                <div class="card-header">
+                    Top 3 trending books
+                </div>
+                <div class="card-body">
+                    <div>
+                        <canvas id="beChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+
+        	<script>
+Chart.defaults.font.size = 11;
+
+const data1 = {
+  labels: {{ labels1|safe }},
+  datasets: [{
+    label: 'Book Category',
+    data: {{ data1|safe }},
+    backgroundColor: [
+      '#283897',
+      '#016db8',
+      '#02a2b8',
+      '#00a666',
+      '#a6cf4f',
+      '#fef200',
+      '#f58021',
+      '#ee1c27',
+      '#612d93',
+    ],
+    hoverOffset: 4
+  }]
+};
+
+  const config1 = {
+    type: 'doughnut',
+    data: data1,
+    options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#b1c5d7'
+                    }
+                }
+            }
+    }
+  };
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config1
+  );
+
+
+
+const data2 = {
+  labels: {{ labels2|safe }},
+  datasets: [{
+    label: 'Book Quantity',
+    data: {{ data2|safe }},
+    backgroundColor: [
+      '#96ceb4',
+      '#ffeead',
+      '#ff6f69',
+      '#ffcc5c',
+      '#88d8b0',
+    ],
+    borderWidth: 2,
+    hoverOffset: 4
+  }]
+};
+
+  const config2 = {
+    type: 'bar',
+    data: data2,
+    options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#b1c5d7'
+                    }
+                }
+            }
+    }
+  };
+  const xxChart = new Chart(
+    document.getElementById('xxChart'),
+    config2
+  );
+
+
+
+const data3 = {
+  labels: {{ labels3|safe }},
+  datasets: [{
+    label: 'Count',
+    data: {{ data3|safe }},
+    backgroundColor: [
+      '#FF3EA5FF',
+      '#EDFF00FF',
+      '#00A4CCFF',
+    ],
+    hoverOffset: 4
+  }]
+};
+
+  const config3 = {
+    type: 'bar',
+    data: data3,
+    options: {
+    indexAxis: 'y',
+
+    }
+  };
+  const beChart = new Chart(
+    document.getElementById('beChart'),
+    config3
+  );
+
+</script>
+</div>
+</div>
+{% endblock %}

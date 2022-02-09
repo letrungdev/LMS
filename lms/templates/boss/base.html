@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.15.4/css/all.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body style="background-color:#212332">
+<!--navbar-->
+<nav class="navbar navbar-expand-sm fixed-top bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand me-auto" href="{% url 'boss' %}" style="font-size:27px"><span style="color:#e8e8ea"><i class="fab fa-leanpub"></i>  LMS</span></a>
+        <form class="d-flex" method="GET" action="{% url 'bsearch' %}">
+        <input class="form-control me-2" type="text" placeholder="Search" style="width:400px;background-color:#2a2d3e" name="searched">
+        <button class="btn me-2 text-light" type="submit" style="background-color:#2697ff">Search</button>
+        </form>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown dropstart">
+                 <a class="nav-link text-light" href="#" role="button" data-bs-toggle="dropdown"><i class="fas fa-user-secret fa-2x"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Hello {{ user.username}}</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><button type="button" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#myModal">Logout</button></li>
+                </ul>
+
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+<!-- Logout Modal-->
+<div class="modal" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">Are you sure about that?</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Cancel</button>
+               <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--sidebar-->
+<div class="container-fluid" style="margin-top:65px">
+    <div class="row">
+        <div class="col-sm-2" style="background-color:#2a2d3e">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 min-vh-100">
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <br>
+                    <li class="nav-item">
+                        <a href="{% url 'boss' %}" class="nav-link align-middle px-0" style="color:#2697ff">
+                           <i class="fas fa-school"></i> <span class="ms-1 d-none d-sm-inline" style="font-weight:bold">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#submenu1" data-bs-toggle="collapse" class="nav-link px-0 align-middle" style="color:#2697ff">
+                            <i class="far fa-id-card"></i> <span class="ms-1 d-none d-sm-inline" style="font-weight:bold">USERS</span>
+                        </a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu1" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="{% url 'bulist' %}" class="nav-link px-0" style="color:#2697ff"> <span class="d-none d-sm-inline">View User List</span></a>
+                            </li>
+                            <li>
+                                <a href="{% url 'bauser' %}" class="nav-link px-0" style="color:#2697ff"> <span class="d-none d-sm-inline">Add User</span></a>
+                            </li>
+                            <li>
+                                <a href="{% url 'bmuser' %}" class="nav-link px-0" style="color:#2697ff"> <span class="d-none d-sm-inline">Edit User</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle" style="color:#2697ff">
+                            <i class="fas fa-book"></i> <span class="ms-1 d-none d-sm-inline" style="font-weight:bold">BOOKS</span></a>
+                        <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="{% url 'bblist' %}" class="nav-link px-0" style="color:#2697ff"> <span class="d-none d-sm-inline">View Booklist</span></a>
+                            </li>
+                            <li class="w-100">
+                                <a href="{% url 'bbslist' %}" class="nav-link px-0" style="color:#2697ff"> <span class="d-none d-sm-inline">Book Status</span></a>
+                            </li>
+                            <li>
+                                <a href="{% url 'babook' %}" class="nav-link px-0" style="color:#2697ff"> <span class="d-none d-sm-inline">Add Book</span></a>
+                            </li>
+                            <li>
+                                <a href="{% url 'bmbook' %}" class="nav-link px-0" style="color:#2697ff"> <span class="d-none d-sm-inline">Edit Book</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle" style="color:#2697ff">
+                            <i class="fas fa-comment"></i><span class="ms-1 d-none d-sm-inline" style="font-weight:bold">REQUEST</span></span> </a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu3" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="{% url 'brlist' %}" class="nav-link px-0" style="color:#2697ff"> <span class="d-none d-sm-inline">View Request</span></a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#submenu4" data-bs-toggle="collapse" class="nav-link px-0 align-middle" style="color:#2697ff">
+                            <i class="fas fa-calendar-check"></i><span class="ms-1 d-none d-sm-inline" style="font-weight:bold">Book Status</span> </a>
+                            <ul class="collapse nav flex-column ms-1" id="submenu4" data-bs-parent="#menu">
+                            <li class="w-100">
+                                <a href="{% url 'bslist' %}" class="nav-link px-0" style="color:#2697ff"> <span class="d-none d-sm-inline">View Borrow List</span></a>
+                            </li>
+                            <li class="w-100">
+                                <a href="{% url 'bhlist' %}" class="nav-link px-0" style="color:#2697ff"> <span class="d-none d-sm-inline">History</span></a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <hr>
+
+            </div>
+        </div>
+        <div class="col-sm-10" style="background-color:#212332">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+</div>
+</body>
+</html>

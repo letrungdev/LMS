@@ -1,0 +1,93 @@
+{% extends 'boss/base.html' %}
+{% block title %}Request List{% endblock %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <ol class="breadcrumb text-light" style="font-size:25px;margin:20px 0">
+        <li class="breadcrumb-item">My LMS</li>
+        <li class="breadcrumb-item">Manage Request</li>
+        <li class="breadcrumb-item">Request List</li>
+    </ol>
+
+    <form method="GET" action="{% url 'brsearch' %}">
+        <div class="input-group" style="width:400px;margin:20px">
+              <span class="input-group-text" style="width:60px;background-color:white">Find: </span>
+            <input type="text" class="form-control" name="searched" required="" placeholder="username or book">
+            <button class="btn me-2 text-light" type="submit" style="background-color:#2697ff"><i class="fas fa-search"></i></button>
+          </div>
+        </form>
+
+
+    <div class="row">
+        <div class="table-responsive">
+             {% if searched %}
+            <center>
+            <p style="color:white;font-size:25px;margin-bottom:0px">You searched for: {{ searched}} </p>
+            <p style="color:white"><i>({{ count }} results)</i></p></center>
+            {% endif %}
+
+             {% if requests %}
+        <table class="table table-bodered shadow-lg text-light" width="100%" cellspacing="0">
+            <thead style="background-color:#21259f;font-size:25px;font-weight:bold">
+                <tr>
+                    <td>No</td>
+                    <td>User</td>
+                    <td>Book</td>
+                    <td>Date</td>
+                    <td>Accept</td>
+                </tr>
+            </thead>
+            <tbody style="background-color:#4b4ef7; font-size:20px">
+
+            {% for requestb in requests %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ requestb.user }}</td>
+                <td>{{ requestb.book }}</td>
+                <td>{{ requestb.date }}</td>
+                <td>
+                    <form  method="POST" action="{% url 'baborrow' requestb.pk %}">
+                        {% csrf_token %}
+                    <button type="submit" class="btn btn-success">
+                         <i class="fas fa-check"></i>
+                    </button>
+                    </form>
+                </td>
+            </tr>
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+    {% endif %}
+
+
+             {% if is_paginated %}
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link">Previous</a></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="page-item active"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link " href="?page={{ page_obj.next_page_number }}">Next</a></li>
+    {% else %}
+       <li class="page-item disabled"><a class="page-link">Next</a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+        </div>
+
+    </div>
+
+
+</div>
+{% endblock %}

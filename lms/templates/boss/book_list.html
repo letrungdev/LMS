@@ -1,0 +1,67 @@
+{% extends 'boss/base.html' %}
+{% block title %}Book List{% endblock %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <ol class="breadcrumb text-light" style="font-size:25px;margin:20px 0">
+        <li class="breadcrumb-item">My LMS</li>
+        <li class="breadcrumb-item">Manage Book</li>
+        <li class="breadcrumb-item">Book List</li>
+    </ol>
+    <div class="row">
+        <div class="table-responsive">
+        <table class="table table-bodered shadow-lg text-light" width="100%" cellspacing="0">
+            <thead style="background-color:#21259f;font-size:25px;font-weight:bold">
+                <tr>
+                    <td>No</td>
+                    <td>Cover</td>
+                    <td>Title</td>
+                    <td>Author</td>
+                    <td>Category</td>
+                    <td>Year</td>
+                    <td>Quantity</td>
+                </tr>
+            </thead>
+            <tbody style="background-color:#4b4ef7; font-size:20px">
+            {% if books %}
+            {% for book in books %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><img src="{{ book.cover.url }}" style="height: 250px; width: 185px"></td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.category }}</td>
+                <td>{{ book.year }}</td>
+                <td>{{ book.quantity }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+
+             {% if is_paginated %}
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link">Previous</a></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="page-item active"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link " href="?page={{ page_obj.next_page_number }}">Next</a></li>
+    {% else %}
+       <li class="page-item disabled"><a class="page-link">Next</a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

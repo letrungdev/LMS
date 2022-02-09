@@ -1,0 +1,60 @@
+{% extends 'boss/base.html' %}
+{% block title %}Edit User{% endblock %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <ol class="breadcrumb text-light" style="font-size:25px;margin:20px 0">
+        <li class="breadcrumb-item">My LMS</li>
+        <li class="breadcrumb-item">Manage Book</li>
+        <li class="breadcrumb-item">Edit</li>
+    </ol>
+    <div class="row">
+        <div class="col-sm-8">
+        <div class="card shadow-lg bg-primary text-light">
+            <div class="card-header" style="background-color:#21259f;font-size:30px">
+                    <center><p>Title : {{ ebook.title }}</p></center>
+            </div>
+            <div class="card-body" style="background-color:#4b4ef7">
+                <form action="{% url 'udbook' ebook.pk %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group mt-2">
+                         <label>Book Title</label>
+                        <input type="text" class="form-control" name="title" value="{{ ebook.title }}" required="required">
+                    </div>
+                    <div class="form-group mt-2">
+                        <label>Author Name:</label>
+                        <input type="text" class="form-control" name="author" value="{{ ebook.author }}" required="required">
+                    </div>
+
+                    <div class="form-group mt-2">
+                        <label>Category</label>
+                        <input type="text" class="form-control" name="category" value="{{ ebook.category }}" required="required">
+                    </div>
+
+                    <div class="form-group mt-2">
+                        <label>Review</label>
+                        <textarea class="form-control" rows ="5" name ="review" required="required">{{ ebook.review }}</textarea>
+                    </div>
+
+                    <div class="form-group mt-2">
+                        <label>Year</label>
+                        <input type="text" class="form-control" name="year" value="{{ ebook.year }}" required="required">
+                    </div>
+
+                    <div class="form-group mt-2">
+                        <label>Quantity</label>
+                        <input type="text" class="form-control" name="quantity" value="{{ ebook.quantity }}" required="required">
+                    </div>
+
+                    <div class="form-group mt-2">
+                        <button type="submit" class="btn btn-success" style="background-color:#21259f;font-size:20px;border-radius:10px">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}

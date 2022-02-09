@@ -1,0 +1,109 @@
+{% extends 'boss/base.html' %}
+{% block title %}Edit Book{% endblock %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <ol class="breadcrumb text-light" style="font-size:25px;margin:20px 0">
+        <li class="breadcrumb-item">My LMS</li>
+        <li class="breadcrumb-item">Manage Book</li>
+        <li class="breadcrumb-item">Edit</li>
+    </ol>
+
+    <form method="GET" action="{% url 'bbesearch' %}">
+        <div class="input-group" style="width:400px;margin:20px">
+              <span class="input-group-text" style="width:60px;background-color:white">Find: </span>
+            <input type="text" class="form-control" name="searched" required="" placeholder="title">
+            <button class="btn me-2 text-light" type="submit" style="background-color:#2697ff"><i class="fas fa-search"></i></button>
+          </div>
+        </form>
+
+    <div class="row">
+        <div class="table-responsive">
+        <table class="table table-bodered shadow-lg text-light" width="100%" cellspacing="0">
+            <thead style="background-color:#21259f;font-size:25px;font-weight:bold">
+                <tr>
+                    <td>No</td>
+                    <td>Title</td>
+                    <td>Author</td>
+                    <td>Year</td>
+                    <td>Quantity</td>
+                    <td>Edit</td>
+                    <td>Delete</td>
+                </tr>
+            </thead>
+            <tbody style="background-color:#4b4ef7">
+
+            {% if books %}
+            {% for book in books %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ book.title }}</td>
+                <td>{{ book.author }}</td>
+                <td>{{ book.year }}</td>
+                <td>{{ book.quantity }}</td>
+                <td>
+                    <a href="{% url 'bebook' book.pk %}"><button type="button" class="btn btn-danger">Edit</button></a>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deModal">
+                        Delete
+                    </button>
+                </td>
+            </tr>
+             <!-- The Modal -->
+<div class="modal" id="deModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Delete...</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <!-- Modal body -->
+      <div class="modal-body">
+        Are you sure about that?
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+          <form method="POST" action="{% url 'bdbook' book.pk %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger" data-bs-dismiss="modal">Yes</button>
+          </form>
+          <a><button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+            {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+
+             {% if is_paginated %}
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link">Previous</a></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="page-item active"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link " href="?page={{ page_obj.next_page_number }}">Next</a></li>
+    {% else %}
+       <li class="page-item disabled"><a class="page-link">Next</a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+        </div>
+
+    </div>
+
+
+</div>
+{% endblock %}

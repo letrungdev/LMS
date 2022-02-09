@@ -1,0 +1,110 @@
+{% extends 'boss/base.html' %}
+{% block title %}Book Status{% endblock %}
+{% load static %}
+{% block content %}
+<style>
+.container td, th {
+	  padding-bottom: 2%;
+	  padding-top: 2%;
+  padding-left:2%;
+}
+/* Background-color of the odd rows */
+.container tr:nth-child(odd) {
+	  background-color: #323C50;
+}
+
+/* Background-color of the even rows */
+.container tr:nth-child(even) {
+	  background-color: #2C3446;
+}
+
+.container th {
+	  background-color: #1F2739;
+}
+
+.container td:first-child { color: #FB667A; }
+
+.container tr:hover {
+   background-color: #464A52;
+-webkit-box-shadow: 0 6px 6px -6px #0E1119;
+	   -moz-box-shadow: 0 6px 6px -6px #0E1119;
+	        box-shadow: 0 6px 6px -6px #0E1119;
+}
+</style>
+
+
+<div class="container-fluid">
+    <ol class="breadcrumb text-light" style="font-size:25px;margin:20px 0">
+        <li class="breadcrumb-item">My LMS</li>
+        <li class="breadcrumb-item">Manage Book</li>
+        <li class="breadcrumb-item">Book Status</li>
+    </ol>
+
+    <form method="GET" action="{% url 'bssearch' %}">
+        <div class="input-group" style="width:450px;margin-left:100px;margin-bottom:25px">
+              <span class="input-group-text" style="width:158px">Title contains: </span>
+            <input type="text" class="form-control" name="title" required="">
+            <button class="btn me-2 text-light" type="submit" style="background-color:#2697ff">Find</button>
+          </div>
+        </form>
+
+
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+         <div class="table-responsive">
+        <table class="container text-white" width="100%" >
+            <thead style="background-color:#21259f;font-size:27px;font-weight:bold">
+                <tr>
+                    <td>No</td>
+                    <td>Title</td>
+                    <td>Request</td>
+                    <td>Borrowing</td>
+                    <td>Quantity</td>
+                </tr>
+            </thead>
+            <tbody style="background-color:#4b4ef7; font-size:25px">
+            {% if books %}
+            {% for book in books %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ book.title|slice:":35" }}...</td>
+                <td>{{ book.order }}</td>
+                <td>{{ book.bring }}</td>
+                <td>{{ book.quantity }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>
+
+             {% if is_paginated %}
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link">Previous</a></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="page-item active"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link " href="?page={{ page_obj.next_page_number }}">Next</a></li>
+    {% else %}
+       <li class="page-item disabled"><a class="page-link">Next</a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+        </div>
+        </div>
+
+        <div class="col-sm-1"></div>
+
+    </div>
+</div>
+{% endblock %}

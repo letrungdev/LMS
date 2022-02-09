@@ -1,0 +1,412 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Welcome To My LMS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.15.4/css/all.css">
+
+</head>
+
+<body style="background-color:#f6f6eb">
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-sm fixed-top" style="background-color:#f6f6eb">
+
+    <a class="navbar-brand" href="" style="margin-left:200px;font-size:37px;color:#10284b;font-family:impact">LMS</a>
+      <ul class="navbar-nav me-auto" style="font-size:20px;">
+        <li class="nav-item">
+          <a class="nav-link" href="#section1" style="color:#10284b;font-weight:700;margin-left:35px">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#section2" style="color:#10284b;font-weight:700;margin-left:35px">Book</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#section3" style="color:#10284b;font-weight:700;margin-left:35px">Service</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#section4" style="color:#10284b;font-weight:700;margin-left:35px">Contact</a>
+        </li>
+
+          <li class="nav-item">
+          <button class="nav-link" data-bs-toggle="modal" data-bs-target="#myLogin" style="color:#10284b;font-weight:700;margin-left:350px">Log In</button>
+
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#mySignup" style="margin-left:15px">
+              <button class="btn" type="submit" style="background-color:#381fd1;color:white;width:100px;font-weight:700">Sign Up</button>
+          </a>
+        </li>
+      </ul>
+</nav>
+
+<div class="row" style="background-image: url('{% static 'images/head.png' %}');background-size:1520px 700px;">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-7">
+        <p style="margin-top:100px;margin-bottom:1px;font-size:18px;color:#381fd1;font-weight:700">Introducing LMS</p>
+
+            <p style="font-size:85px;color:#10284b;font-weight:bold">Make the LMS’s  </p>
+            <p style="font-size:85px;color:#10284b;font-weight:bold;line-height: 0.4;">library more</p>
+            <p style="font-size:85px;color:#10284b;font-weight:bold">accessible</p>
+
+
+        <p style="font-size:17px">More than 500,000 pupils, students and library managers at X's university </p>
+        <p style="font-size:17px">have used LMS website to make their need more compliant.</p>
+
+        <p style="font-size:20px;color:#381fd1;font-weight:700">Join them and get started today!</p>
+
+        <a data-bs-toggle="modal" data-bs-target="#mySignup">
+              <button class="btn" type="submit" style="background-color:#381fd1;color:white;width:200px;font-weight:700">Sign up for free</button>
+          </a>
+
+        <a href="#section1">
+              <button class="btn btn-primary" type="submit" style="width:200px;font-weight:700">Learn more</button>
+          </a>
+
+    </div>
+    <div class="col-sm-3"></div>
+    </div>
+
+
+ <div class="row" id="section1" style="margin-top:100px">
+     <hr>
+     <div class="col-sm-1"></div>
+     <div class="col-sm-5">
+         <center><img src="{% static 'images/bookshelf.jpg' %}" style="width:580px;height:440px; margin:100px 50px"/>
+          </center>
+     </div>
+     <div class="col-sm-5">
+  <center style="font-size:20px">
+
+    <p style="font-size:50px;font-family:impact;color:#10284b;margin-top:80px">ABOUT LMS</p>
+      <center style="font-size:20px">
+    <p>Libraries are cornerstones of our communities as hubs for</p>
+    <p> knowledge, research, and so much more. They are places</p>
+    <p> where people can connect with others andinvest </p>
+    <p>in their own future. We know that libraries are a huge resource </p>
+    <p> to every community, but how about our online communities?</p>
+    <br>
+<button class="btn" type="submit" style="background-color:#381fd1;color:white;width:200px;font-weight:700">Read More</button>
+  </center>
+</div>
+     <div class="col-sm-1"></div>
+ </div>
+
+<hr>
+<div class="row" id="section2">
+    <center>
+        <p style="font-size:50px;font-family:impact;color:#10284b;margin-top:80px;line-height:0.7">See LMS book</p>
+        <p style="font-size:17px;margin-bottom:30px">We have many different types of books such as science, romance, and so on</p>
+    </center>
+    <div class="row">
+
+  <div id="multi-item" class="carousel slide carousel-multi-item" data-bs-ride="carousel">
+
+	   <!-- Indicators/dots -->
+  <div class="carousel-indicators" style="position: relative; bottom: -590px;">
+    <button type="button" data-bs-target="#multi-item" data-bs-slide-to="0" class="active bg-secondary"></button>
+    <button class="bg-secondary" type="button" data-bs-target="#multi-item" data-bs-slide-to="1"></button>
+    <button class="bg-secondary" type="button" data-bs-target="#multi-item" data-bs-slide-to="2"></button>
+  </div>
+
+    <!--Slides-->
+    <div class="carousel-inner" role="listbox">
+
+      <!--First slide-->
+      <div class="carousel-item active">
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="card mb-2" style="width:320px;margin-left:159px">
+              <img class="card-img-top" src="{% static 'images/caro1.jpg' %}" style="height:330px">
+              <div class="card-body">
+                <h4 class="card-title">Science</h4>
+                <p class="card-text">A science book is a work of nonfiction, usually written by a scientist, researcher, or professor</p>
+                <a class="btn btn-primary">Show</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4 clearfix d-none d-md-block">
+            <div class="card mb-2" style="width:320px;margin-left:80px">
+              <img class="card-img-top" src="{% static 'images/caro2.jpg' %}" style="height:330px">
+              <div class="card-body">
+                <h4 class="card-title">Romance</h4>
+                <p class="card-text">A romance novel is a prose fiction with a theme of love and
+                    have a focus on the development of a relationship</p>
+                <a class="btn btn-primary">Show</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4 clearfix d-none d-md-block">
+            <div class="card mb-2" style="width:320px">
+              <img class="card-img-top" src="{% static 'images/caro3.jpg' %}" style="height:330px">
+              <div class="card-body">
+                <h4 class="card-title">Mystery</h4>
+                <p class="card-text">The mystery genre is a genre of fiction that follows a crime
+                    from the moment it is committed to the moment it is solved</p>
+                <a class="btn btn-primary">Show</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!--/.First slide-->
+
+      <!--Second slide-->
+      <div class="carousel-item">
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="card mb-2" style="width:320px;margin-left:159px">
+              <img class="card-img-top" src="{% static 'images/caro4.jpg' %}" style="height:330px">
+              <div class="card-body">
+                <h4 class="card-title">Literature</h4>
+                <p class="card-text">iterature includes non-fictional books, articles or other printed information on a particular subject</p>
+                <a class="btn btn-primary">Show</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4 clearfix d-none d-md-block">
+            <div class="card mb-2" style="width:320px;margin-left:80px">
+              <img class="card-img-top" src="{% static 'images/caro5.jpg' %}" style="height:330px">
+              <div class="card-body">
+                <h4 class="card-title">History</h4>
+                <p class="card-text">a record or account, often chronological in approach, of past events, developments, etc</p>
+                <a class="btn btn-primary">Show</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4 clearfix d-none d-md-block">
+            <div class="card mb-2" style="width:320px">
+              <img class="card-img-top" src="{% static 'images/caro6.jpg' %}" style="height:330px">
+              <div class="card-body">
+                <h4 class="card-title">Cookbook</h4>
+                <p class="card-text">a book of directions explaining how to prepare and cook various kinds of food as soup, noddle, beefsteak,...</p>
+                <a class="btn btn-primary">Show</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!--/.Second slide-->
+
+      <!--Third slide-->
+      <div class="carousel-item">
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="card mb-2" style="width:320px;margin-left:159px">
+              <img class="card-img-top" src="{% static 'images/caro7.jpg' %}" style="height:330px">
+              <div class="card-body">
+                <h4 class="card-title">Business</h4>
+                <p class="card-text">a term that refers to a professional's list of accounts or clients.
+                    Finance and legal professionals are likely to use this term</p>
+                <a class="btn btn-primary">Show</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-sm-4 clearfix d-none d-md-block">
+            <div class="card mb-2" style="width:320px;margin-left:80px">
+              <img class="card-img-top" src="{% static 'images/caro8.jpg' %}" style="height:330px">
+              <div class="card-body">
+                <h4 class="card-title">Biography</h4>
+                <p class="card-text">a detailed description of a person's life.
+                    It involves more than just the basic facts like education, work, and death</p>
+                <a class="btn btn-primary">Show</a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-sm-4 clearfix d-none d-md-block">
+            <div class="card mb-2" style="width:320px">
+              <img class="card-img-top" src="{% static 'images/caro9.jpg' %}" style="height:330px">
+              <div class="card-body">
+                <h4 class="card-title">Art</h4>
+                <p class="card-text">A book relating to art; specifically a book containing printed reproductions of works of art</p>
+                <a class="btn btn-primary">Show</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!--/.Third slide-->
+
+    </div>
+    <!--/.Slides-->
+<!-- Left and right controls/icons -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#multi-item" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon bg-secondary"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#multi-item" data-bs-slide="next">
+    <span class="carousel-control-next-icon bg-secondary"></span>
+  </button>
+
+  </div>
+  <!--/.Carousel Wrapper-->
+
+</div>
+</div>
+
+    <div class="row" id="section3">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-4">
+
+            <p style="font-size:70px;font-family:impact;color:#10284b;margin-top:150px">SERVICES</p>
+            <p style="font-size:18px">To help you with that, we’ll start with the basics of customer support software: what it is, the different types,
+                and how it benefits your team. Then we’ll get into best practices, the latest trends, and an overview of the
+                best available tools.</p>
+           <button class="btn" type="submit" style="background-color:#381fd1;color:white;width:200px;font-weight:700">Read More</button>
+        </div>
+        <div class="col-sm-4">
+            <p style="margin-top:150px;margin-left:70px; font-size: 30px"><span style="font-family:impact;color:#10284b; font-size:50px;margin-right:50px">01</span>Read Book's Review</p>
+            <p style="margin-top:40px;margin-left:70px; font-size: 30px"><span style="font-family:impact;color:#10284b;font-size:50px;margin-right:50px">02</span>Request To Borrow</p>
+            <p style="margin-top:40px;margin-left:70px;font-size:30px;margin-bottom:150px"><span style="font-family:impact;color:#10284b;font-size:50px;margin-right:50px">03</span>See Your Status</p>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+<hr>
+    <div class="row text-light" id="section4">
+        <div class="col-sm-3">
+        <div style="margin-top:100px;margin-left:80px">
+            <p style="font-weight:bold; font-size:80px;font-family:impact;color:#10284b;">LMS</p>
+            <p style="font-size:25px;color:#10284b">powered by letrungdev</p>
+            <pre><p style="color:#10284b;font-size:25px"><i class="fab fa-facebook-square">  </i><i class="fab fa-instagram">  </i><i class="fab fa-twitter">  </i><i class="fab fa-youtube">  </i></p></pre>
+        </div>
+
+        </div>
+        <div class="col-sm-3">
+            <center><div style="margin-top:160px;color:#10284b">
+                    <p style="font-size:20px">About Us</p>
+                    <p style="font-size:20px">Service</p>
+                    <p style="font-size:20px">Donate</p>
+                </ul>
+            </div>
+            </center>
+
+        </div>
+        <div class="col-sm-3">
+            <center><div style="margin-top:160px;color:#10284b">
+                    <p style="font-size:20px">Terms of use</p>
+                    <p style="font-size:20px">Events</p>
+                    <p style="font-size:20px">Gallery</p>
+            </div>
+            </center>
+
+        </div>
+        <div class="col-sm-3">
+            <div style="margin-top:150px;color:#10284b">
+            <p style="font-size:20px"><i class="fas fa-envelope"></i> letrungdev@gmail.com</p>
+            <p style="font-size:20px"><i class="fas fa-phone-alt"></i> +84556887990</p>
+            <p style="font-size:20px"><i class="fas fa-university"></i> SOICT</p>
+                </div>
+        </div>
+    </div>
+
+
+<!--the signup modal-->
+    <div class="modal" id="mySignup">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+          <h4 class="modal-title">Sign Up </h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+
+        <form method="POST" action="{% url 'register' %}">
+          {% csrf_token %}
+          <div class="input-group form-group">
+              <span class="input-group-text" style="width:45px"><i class="fas fa-user"></i></span>
+            <input type="text" class="form-control" placeholder="username" name="username" required="">
+          </div>
+            <br>
+            <div class="input-group form-group">
+              <span class="input-group-text" style="width:45px"><i class="fas fa-edit"></i></span>
+            <input type="text" class="form-control" placeholder="First Name" name="first_name" required="">
+          </div>
+<br>
+            <div class="input-group form-group">
+              <span class="input-group-text" style="width:45px"><i class="far fa-edit"></i></span>
+            <input type="text" class="form-control" placeholder="Last Name" name="last_name" required="">
+          </div>
+<br>
+          <div class="input-group form-group">
+              <span class="input-group-text" style="width:45px"><i class="fas fa-edit"></i></span>
+            <input type="email" class="form-control" placeholder="email" name="email" required="">
+          </div>
+<br>
+           <div class="input-group form-group">
+              <span class="input-group-text" style="width:45px"><i class="fas fa-key"></i></span>
+            <input type="password" class="form-control" placeholder="password" name="password" required="">
+          </div>
+<br>
+            <div class="input-group form-group">
+              <span class="input-group-text" style="width:45px"><i class="fas fa-key"></i></span>
+            <input type="password" class="form-control" placeholder="re-password" name="repassword" required="">
+          </div>
+<br>
+            <center>
+          <div class="form-group">
+              <button class="btn btn-danger" type="submit" style="color:white;width:120px;font-weight:700">Register</button>
+          </div>
+                </center>
+        </form>
+                      </div>
+
+                  </div>
+              </div>
+    </div>
+
+
+<!--the login modal-->
+  <div class="modal" id="myLogin">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+          <h4 class="modal-title">Log In </h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+
+        <form method="POST" action="{% url 'login' %}">
+          {% csrf_token %}
+          <div class="input-group">
+              <span class="input-group-text" style="width:45px"><i class="fas fa-user"></i></span>
+            <input type="text" class="form-control" placeholder="username" name="username" required="">
+          </div>
+            <br>
+          <div class="input-group form-group">
+              <span class="input-group-text" style="width:45px"><i class="fas fa-key"></i></span>
+            <input type="password" class="form-control" placeholder="password" name="password" required="">
+          </div>
+            <br>
+            <center>
+
+          <div class="form-group">
+              <button class="btn float-left btn-danger" type="submit" style="color:white;width:120px;font-weight:700">Sign In</button>
+          </div>
+                </center>
+        </form>
+                      </div>
+
+                  </div>
+              </div>
+  </div>
+ </div>
+</body>
+</html>

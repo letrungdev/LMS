@@ -1,0 +1,99 @@
+{% extends 'boss/base.html' %}
+{% block title %}Borrow Status{% endblock %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid">
+    <ol class="breadcrumb text-light" style="font-size:25px;margin-top:30px">
+        <li class="breadcrumb-item">My LMS</li>
+        <li class="breadcrumb-item">Manage Borrow</li>
+        <li class="breadcrumb-item">Borrow List</li>
+    </ol>
+
+
+    <form method="GET" action="{% url 'bbsearch' %}">
+        <div class="input-group" style="width:400px;margin:20px">
+              <span class="input-group-text" style="width:60px;background-color:white">Find: </span>
+            <input type="text" class="form-control" name="searched" required="" placeholder="username or book">
+            <button class="btn me-2 text-light" type="submit" style="background-color:#2697ff"><i class="fas fa-search"></i></button>
+          </div>
+        </form>
+
+
+        <div class="table-responsive">
+            {% if searched %}
+            <center>
+            <p style="color:white;font-size:25px;margin-bottom:0px">You searched for: {{ searched}} </p>
+            <p style="color:white"><i>({{ count }} results)</i></p></center>
+            {% endif %}
+
+            {% if borrows %}
+        <table class="table table-bodered shadow-lg text-light" width="100%" cellspacing="0">
+            <thead style="background-color:#21259f;font-size:25px;font-weight:bold">
+                <tr>
+                    <td>No</td>
+                    <td>Book</td>
+                    <td>User</td>
+                    <td>Start</td>
+                    <td>End</td>
+                    <td>Return</td>
+                </tr>
+            </thead>
+
+            <tbody style="background-color:#4b4ef7">
+
+            {% for borrow in borrows %}
+            <tr>
+
+                <td>{{ forloop.counter }}</td>
+                <td>{{ borrow.book }}</td>
+                <td>{{ borrow.user }}</td>
+                <td>{{ borrow.start_date }}</td>
+                <td>{{ borrow.end_date }}</td>
+                <td>
+                    <form  method="POST" action="{% url 'bahistory' borrow.pk %}">
+                        {% csrf_token %}
+                    <button type="submit" class="btn btn-success">
+                         <i class="fas fa-check"></i>
+                    </button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+{% endif %}
+
+        <button class="btn me-2 text-light" type="submit" style="background-color:#2a2d3e;float:right;border: 1px solid #4CAF50;font-size:17px">
+                        <a href="{% url 'bhlist' %}" style="color:white;text-decoration: none">See History</a>
+                    </button>
+
+             {% if is_paginated %}
+  <ul class="pagination justify-content-center">
+    {% if page_obj.has_previous %}
+      <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+    {% else %}
+      <li class="page-item disabled"><a class="page-link">Previous</a></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="page-item active"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li class="page-item"><a class="page-link " href="?page={{ page_obj.next_page_number }}">Next</a></li>
+    {% else %}
+       <li class="page-item disabled"><a class="page-link">Next</a></li>
+    {% endif %}
+  </ul>
+{% endif %}
+        </div>
+
+    </div>
+
+
+</div>
+{% endblock %}

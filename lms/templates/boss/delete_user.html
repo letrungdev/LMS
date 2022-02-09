@@ -1,0 +1,37 @@
+{% extends 'boss/base.html' %}
+{% block title %}Delete User{% endblock %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <ol class="breadcrumb text-light" style="font-size:25px;margin:20px 0">
+        <li class="breadcrumb-item">My LMS</li>
+        <li class="breadcrumb-item">Manage User</li>
+        <li class="breadcrumb-item">Delete User</li>
+    </ol>
+    <div class="row">
+        <div class="col-sm-8">
+        <div class="card shadow-lg bg-primary text-light">
+            <div class="card-header" style="background-color:#21259f">
+                    <p style="font-size:20px;font-weight:bold">Delete User : {{ object.username }}</p>
+            </div>
+            <div class="card-body" style="background-color:#4b4ef7">
+                <form method="post">
+                {% csrf_token %}
+                <div class="alert alert-warning" role="alert">
+                  Are you sure to delete book: {{ object }} ?
+                </div>
+                <input type="submit" class="btn btn-danger" value="Yes, delete" />
+                <a class="btn btn-success" href="{% url 'bulist' %}">No, just I've tried the delete button</a>
+            </form>
+            </div>
+        </div>
+        </div>
+        
+        
+    </div>
+</div>
+
+
+
+
+{% endblock %}
